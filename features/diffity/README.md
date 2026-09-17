@@ -11,9 +11,8 @@ enclave features add sdirix/enclave-extensions --name diffity
 enclave --features +diffity …
 ```
 
-Viewing the UI needs the
-[vnc feature](https://github.com/eclipse-enclave/enclave-extensions/tree/main/features/vnc)
-as well, see [Using it in a session](#using-it-in-a-session).
+Viewing the UI needs the [vnc feature](../vnc) as well, see
+[Using it in a session](#using-it-in-a-session).
 
 ## What it does
 
@@ -42,11 +41,10 @@ in this image, **sessions need no npm/registry access at runtime**.
 port 5391 — no host port is published, so the agent-served UI is never loaded
 by the host browser. Viewing goes through the `vnc` feature instead: diffity
 opens its own UI in the contained Chromium (see below), and the human watches
-that display over VNC (see the
-[vnc feature](https://github.com/eclipse-enclave/enclave-extensions/tree/main/features/vnc)):
+that display over VNC (see the [vnc feature](../vnc)):
 
 ```bash
-enclave features add eclipse-enclave/enclave-extensions --name vnc
+enclave features add sdirix/enclave-extensions --name vnc
 enclave --features +diffity,+vnc …
 # on the host:
 enclave vnc-viewer   # opens a viewer on the session's contained display
@@ -58,9 +56,9 @@ URL — **including the ref**, so the intended diff and its review session are
 shown. This runs through the same `$BROWSER`/`xdg-open` path as any "open in
 browser" flow. diffity sets `VNC_OPEN_LINKS=1`, which makes the vnc feature
 route that path to the contained Chromium (see
-[Opening links on the display](https://github.com/eclipse-enclave/enclave-extensions/tree/main/features/vnc#opening-links-on-the-display)),
-so the agent's "open in browser" behavior works unchanged, it just lands on
-the streamed display instead of a host tab. That also applies to login flows such
+[Opening links on the display](../vnc#opening-links-on-the-display)), so the
+agent's "open in browser" behavior works unchanged, it just lands on the
+streamed display instead of a host tab. That also applies to login flows such
 as `gh auth login --web`, and whatever you enter in the contained browser is
 readable by the agent. Open those URLs on the host instead. Until
 the first diffity view opens, the display shows the vnc feature's waiting page.
