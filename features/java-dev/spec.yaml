@@ -1,0 +1,40 @@
+# Copyright (C) 2026 EclipseSource GmbH and others.
+#
+# This program and the accompanying materials are made available under the
+# terms of the MIT License, which is available in the project root.
+#
+# SPDX-License-Identifier: MIT
+
+schemaVersion: "1"
+kind: mixin
+name: java-dev
+displayName: Java Development
+description: >-
+  OpenJDK from Debian and Gradle, with Gradle's dependency, wrapper, and
+  toolchain caches persisted per project
+defaultEnabled: false
+priority: 70
+failOnInstallError: true
+aptPackages:
+  - default-jdk-headless
+environment:
+  variables:
+    # Arch-independent symlink shipped by default-jre-headless. install.sh
+    # fails the build if it is missing.
+    JAVA_HOME: /usr/lib/jvm/default-java
+network:
+  allowedDomains:
+    # Wrapper distributions, the plugin portal, and the hosts they redirect to.
+    - gradle.org
+    # mavenCentral()
+    - repo.maven.apache.org
+    - repo1.maven.org
+    # Toolchain resolution by the foojay resolver plugin.
+    - api.foojay.io
+caches:
+  - name: gradle-caches
+    target: .gradle/caches
+  - name: gradle-wrapper
+    target: .gradle/wrapper
+  - name: gradle-jdks
+    target: .gradle/jdks

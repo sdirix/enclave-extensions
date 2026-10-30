@@ -47,6 +47,7 @@ for more information.
 | Feature | Status | What it is |
 |---------|--------|------------|
 | [diffity](features/diffity) | Experimental | [diffity](https://github.com/sdirix/diffity) agent-driven diff review UI, built from a pinned commit in the image |
+| [java-dev](features/java-dev) | Experimental | OpenJDK from Debian and a pinned Gradle, with Gradle's caches persisted per project |
 
 Experimental means what it says: each one pins a fast-moving upstream, gets
 thinner testing than a built-in feature, and has rough edges written down in
@@ -56,6 +57,10 @@ above all.
 diffity serves on container-local loopback only, so watching its UI needs
 [vnc](https://github.com/eclipse-enclave/enclave-extensions/tree/main/features/vnc)
 from upstream alongside it.
+
+`java-dev` is carried here only until it lands in upstream enclave-extensions
+([the pending contribution](https://github.com/eclipse-enclave/enclave-extensions)).
+Install it from upstream once it is there.
 
 ## Questions & Support
 
